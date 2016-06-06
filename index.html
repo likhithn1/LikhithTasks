@@ -1,0 +1,87 @@
+<canvas id="ctx" width="500" height="500"
+        style="border:1px solid #000000;"></canvas>
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+
+    var ctx = document.getElementById("ctx").getContext("2d");
+    ctx.font = '30px Arial';
+
+    var socket = io();
+
+    socket.on('newPositions', function (data) {
+        ctx.clearRect(0, 0, 500, 500);
+        for (var i = 0; i < data.length; i++)
+            ctx.fillText(data[i].number, data[i].x, data[i].y);
+    });
+
+    function funcULClick(){
+        var ul = document.getElementById("colorsList");
+        //var items = ul.getElementsByTagName("li");
+        //for (var i = 0; i < items.length; i++) {
+
+        //    if (items[i].id == this.id) {
+        //   // alert(items[i].style.backgroundImage.toString().replace("url(", "").replace(")", ""));
+        //    var ab = items[i].style.backgroundImage.toString().replace("url(", "").replace(")", "")
+        //    alert(ab);
+        //    document.getElementById('showSelectedColor').innerHTML = "<img src=" + ab + ">";
+        //}
+        //}
+    };
+
+    //function funcImgClick() {
+    //    alert(document.getElementById('Img').src);
+    //    //if (document.getElementById('yellow').id == "yellow") {
+    //    //    var imgpath = document.getElementById('yellow').getAttribute('src');
+    //    //    var style = " style=\"width: 50px; height: 50px;\" class=\"img-circle\"";
+    //    //    var imgStyle = imgpath + style;
+    //    //    alert(imgStyle);
+    //    //    document.getElementById('showSelectedColor').innerHTML = "<img src=" + imgStyle + ">";
+    //    //    exit;
+    //    //}
+        
+    //    //else if (document.getElementById('orange').id == "orange") {
+    //    //    alert(document.getElementById('orange').id);
+    //    //    var imgpath = document.getElementById('orange').getAttribute('src');
+    //    //    var style = " style=\"width: 50px; height: 50px;\" class=\"img-circle\"";
+    //    //    var imgStyle = imgpath + style;
+    //    //    alert(imgStyle);
+    //    //    document.getElementById('showSelectedColor').innerHTML = "<img src=" + imgStyle + ">";
+    //    //}
+       
+    //};
+
+</script>
+
+<div id="work_area">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-mg-12">
+            <br />
+            <div id="showSelectedColor">
+                <img src="http://localhost:2000/client/img/Yellow.png" style="width: 50px; height: 50px;" class="img-circle">
+            </div>
+            <h4>Select your color</h4>
+            <div>
+                <ul id="colorsList" style="list-style-type:none" onclick="funcULClick()" >
+                    <li id="yellow" onclick="funcListItemClick()" style="background-image: url(http://localhost:2000/client/img/Yellow.png); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block; " dir="Yellow.png" class="img-circle"></li>
+                    <li id="orange" onclick="funcListItemClick()" style="background-image: url(http://localhost:2000/client/img/Orange.png); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Orange.png" class="img-circle"></li>
+                    <li id="green" onclick="funcListItemClick()" style="background-image: url(http://localhost:2000/client/img/Green.png); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Green.png" class="img-circle"></li>
+                    <li style="background-image: url(http://localhost:2000/client/img/Pink.png); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Pink.png" class="img-circle"></li>
+                    <li style="background-image: url(http://localhost:2000/client/img/Brown.jpg); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Brown.jpg" class="img-circle"></li>
+                    <li style="background-image: url(http://localhost:2000/client/img/Blue.jpg); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Blue.jpg" class="img-circle"></li>
+                    <li style="background-image: url(http://localhost:2000/client/img/Red.png); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Red.png" class="img-circle"></li>
+                    <li style="background-image: url(http://localhost:2000/client/img/Violet.jpg); background-repeat: no-repeat; width: 30px; height: 30px; display: inline-block" dir="Violet.jpg" class="img-circle"></li>
+                </ul>
+            </div>
+            <h4>Input Your Name or Initials (8 Chars max) </h4>
+            <input type="text" id="txtName" maxlength="16" />
+            <h4>Click on Button to Enter Circle field</h4>
+            <input type="button" id="btnSubmit" name="btnSubmit" value="Submit" />
+        </div>
+    </div>
+</div>
+
+
+
